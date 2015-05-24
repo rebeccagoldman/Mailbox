@@ -22,6 +22,9 @@ class ViewController: UIViewController, UIScrollViewDelegate {
     let greenColor = UIColor(red: 85/255, green: 213/255, blue: 80/255, alpha: 1)
     let redColor = UIColor(red: 231/255, green: 61/255, blue: 14/255, alpha: 1)
     let grayColor = UIColor(red: 178/255, green: 178/255, blue: 178/255, alpha: 1)
+    let lightGrayColor = UIColor(red: 247/255, green: 247/255, blue: 247/255, alpha: 1)
+
+    
     
     @IBOutlet weak var archiveIconView: UIImageView!
     @IBOutlet weak var listIconView: UIImageView!
@@ -47,6 +50,8 @@ class ViewController: UIViewController, UIScrollViewDelegate {
     var didPanRight: Bool!
     var didPanLeft: Bool!
     var initialScrollViewPosition: CGFloat!
+    
+    @IBOutlet weak var sendButton: UIButton!
     
     @IBOutlet weak var darkView: UIView!
     @IBOutlet var superView: UIView!
@@ -75,6 +80,16 @@ class ViewController: UIViewController, UIScrollViewDelegate {
         listView.alpha = 0
         darkView.alpha = 0
         actionView.frame = CGRectMake(0, 65, self.view.frame.width, 86)
+        
+        sendButton.addTarget(self, action: "didTapSend:", forControlEvents: UIControlEvents.TouchUpInside)
+        sendButton.tintColor = blueColor
+        sendButton.backgroundColor = lightGrayColor
+        sendButton.setTitle("Send", forState: UIControlState.Normal)
+        sendButton.frame = CGRectMake(274, sendButton.center.y - 18, 40, 34)
+        sendButton.alpha = 0
+
+        self.composeView.addSubview(sendButton)
+
 
         
         searchView.frame = CGRectMake(0, -52, self.view.frame.width, 118)
@@ -97,7 +112,56 @@ class ViewController: UIViewController, UIScrollViewDelegate {
 
     }
     
+  
+
+    @IBAction func didTapSend(sender: UIButton) {
+        
+        println("user tapped send")
+        
+        var translate1 = CGAffineTransformMakeTranslation(0, self.composeView.center.y + 4)
+        var translate2 = CGAffineTransformMakeTranslation(0, self.composeView.center.y - 600)
+        var scale1 = CGAffineTransformMakeScale(0.8, 0.8)
+        var scale2 = CGAffineTransformMakeScale(0.5, 0.5)
+
+
+        
+        UIView.animateWithDuration(0.24, delay: 0, usingSpringWithDamping: 0.8, initialSpringVelocity: 0, options: UIViewAnimationOptions.CurveEaseInOut, animations: { () -> Void in
+
+
+            self.composeView.transform = CGAffineTransformConcat(translate1, scale1)
+
+            
+            }, completion: { (Bool) -> Void in
+        
+        
+                UIView.animateWithDuration(0.24, delay: 0.01, usingSpringWithDamping: 0.8, initialSpringVelocity: 0.8, options: UIViewAnimationOptions.CurveEaseInOut, animations: { () -> Void in
+                    
+                    self.composeView.transform = CGAffineTransformConcat(translate2, scale2)
+                    self.darkView.alpha = 0
+
+                    
+                    }, completion: nil )
+
+            })
+        
+        self.textField.endEditing(true)
+        
+
+        
+
+    }
+
     
+    @IBAction func didFillToField(sender: UITextField) {
+        
+        if textField.text == "rebecca@goldman.org" {
+        
+        sendButton.alpha = 1
+            
+        }
+        
+    }
+   
     
 //    func scrollViewDidScroll(sender: UIScrollView) {
 //        
@@ -120,6 +184,7 @@ class ViewController: UIViewController, UIScrollViewDelegate {
 //    }
 //    
     
+    // dismiss compose view
     @IBAction func didTapCancel(sender: AnyObject) {
         textField.resignFirstResponder()
         

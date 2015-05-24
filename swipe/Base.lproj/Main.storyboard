@@ -99,6 +99,9 @@
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits"/>
+                                                <connections>
+                                                    <action selector="didFillToField:" destination="vXZ-lx-hvc" eventType="editingChanged" id="foS-TA-dcP"/>
+                                                </connections>
                                             </textField>
                                             <view contentMode="scaleToFill" id="HN7-XG-k9O">
                                                 <rect key="frame" x="4" y="108" width="32" height="46"/>
@@ -114,6 +117,13 @@
                                                 <connections>
                                                     <action selector="didTapCancel:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="Pmz-7Z-NZK"/>
                                                 </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="ORP-Lb-E3Q">
+                                                <rect key="frame" x="277" y="5" width="36" height="30"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <state key="normal" title="Send">
+                                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
                                             </button>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -167,6 +177,7 @@
                         <outlet property="rescheduleView" destination="2hi-GA-ZF3" id="oiJ-uB-sgD"/>
                         <outlet property="scrollView" destination="la9-E2-30I" id="KQt-SY-0b3"/>
                         <outlet property="searchView" destination="zrF-Ln-Ct1" id="dPh-zc-xlE"/>
+                        <outlet property="sendButton" destination="ORP-Lb-E3Q" id="z2f-TJ-Cwd"/>
                         <outlet property="superView" destination="kh9-bI-dsS" id="efQ-CV-dWB"/>
                         <outlet property="tapGestureRecognizer" destination="9zu-ke-NX4" id="F8x-fx-NKG"/>
                         <outlet property="textField" destination="qC7-hL-cnM" id="W0J-UJ-tck"/>
