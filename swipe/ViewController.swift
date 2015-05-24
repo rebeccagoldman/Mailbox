@@ -24,6 +24,7 @@ class ViewController: UIViewController, UIScrollViewDelegate {
     let grayColor = UIColor(red: 178/255, green: 178/255, blue: 178/255, alpha: 1)
     let lightGrayColor = UIColor(red: 247/255, green: 247/255, blue: 247/255, alpha: 1)
 
+    @IBOutlet weak var segmentedControl: UISegmentedControl!
     
     
     @IBOutlet weak var archiveIconView: UIImageView!
@@ -72,6 +73,12 @@ class ViewController: UIViewController, UIScrollViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        println("what is the: \(segmentedControl.selectedSegmentIndex)")
+
+        segmentedControl.selectedSegmentIndex = 1
+        
+
+        
         scrollView.contentSize = feedView.image!.size
         actionView.backgroundColor = grayColor
         archiveIconView.alpha = 0
@@ -116,6 +123,27 @@ class ViewController: UIViewController, UIScrollViewDelegate {
 
     }
     
+    @IBAction func didTapSegment(sender: UISegmentedControl) {
+        
+        if segmentedControl.selectedSegmentIndex == 0 {
+            
+            segmentedControl.tintColor = yellowColor
+            
+            
+        } else if segmentedControl.selectedSegmentIndex == 1  {
+            
+            segmentedControl.tintColor = blueColor
+            
+            
+        }  else if segmentedControl.selectedSegmentIndex == 2  {
+            
+            println("what is the: \(segmentedControl.selectedSegmentIndex)")
+            
+            segmentedControl.tintColor = greenColor
+            
+            
+        }
+    }
   
 
     @IBAction func didTapSend(sender: UIButton) {
