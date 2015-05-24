@@ -296,9 +296,15 @@ class ViewController: UIViewController {
                     
                     }, completion: { (Bool) -> Void in
                         
-                        self.actionView.removeFromSuperview()
                         
-                })
+                        
+                        UIView.animateWithDuration(0.2, delay: 0, options: UIViewAnimationOptions.CurveEaseInOut, animations: { () -> Void in
+                            self.actionView.frame = CGRectMake(0, 65, self.view.frame.width, 0)
+                            self.feedView.center.y -= 88
+                            
+                            }, completion: nil)
+
+                     })
             
             // if archive icon is visible, animate icon + message offscreen
             } else if messageView.center.x >= transitionToGreen && velocity.x > 0 {
@@ -310,7 +316,11 @@ class ViewController: UIViewController {
                     
                     }, completion: { (Bool) -> Void in
                         
-                        self.actionView.removeFromSuperview()
+                        UIView.animateWithDuration(0.2, delay: 0, options: UIViewAnimationOptions.CurveEaseInOut, animations: { () -> Void in
+                            self.actionView.frame = CGRectMake(0, 65, self.view.frame.width, 0)
+                            self.feedView.center.y -= 88
+                            
+                            }, completion: nil)
                         
                 })
             
