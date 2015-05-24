@@ -51,6 +51,8 @@ class ViewController: UIViewController, UIScrollViewDelegate {
     var didPanLeft: Bool!
     var initialScrollViewPosition: CGFloat!
     
+    @IBOutlet weak var results1View: UIImageView!
+    @IBOutlet weak var results2View: UIImageView!
     @IBOutlet weak var sendButton: UIButton!
     
     @IBOutlet weak var darkView: UIView!
@@ -79,6 +81,8 @@ class ViewController: UIViewController, UIScrollViewDelegate {
         rescheduleView.alpha = 0
         listView.alpha = 0
         darkView.alpha = 0
+        results1View.alpha = 0
+        results2View.alpha = 0
         actionView.frame = CGRectMake(0, 65, self.view.frame.width, 86)
         
         sendButton.addTarget(self, action: "didTapSend:", forControlEvents: UIControlEvents.TouchUpInside)
@@ -154,8 +158,22 @@ class ViewController: UIViewController, UIScrollViewDelegate {
     
     @IBAction func didFillToField(sender: UITextField) {
         
+        if textField.text == "rebecca" {
+        
+        results1View.alpha = 1
+            
+        } else if textField.text == "rebecca@" {
+            
+        
+        results1View.alpha = 0
+        results2View.alpha = 1
+
+            
+        }
+        
         if textField.text == "rebecca@goldman.org" {
         
+        results2View.alpha = 0
         sendButton.alpha = 1
             
         }

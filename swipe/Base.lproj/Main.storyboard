@@ -125,6 +125,14 @@
                                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>
                                             </button>
+                                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="resultsState1" id="PgC-w5-Zql">
+                                                <rect key="frame" x="0.0" y="70" width="320" height="297"/>
+                                                <autoresizingMask key="autoresizingMask"/>
+                                            </imageView>
+                                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="resultsState2" id="3vc-ZU-u7q">
+                                                <rect key="frame" x="0.0" y="70" width="320" height="297"/>
+                                                <autoresizingMask key="autoresizingMask"/>
+                                            </imageView>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     </view>
@@ -175,6 +183,8 @@
                         <outlet property="messageView" destination="50P-UJ-ghS" id="g1m-50-HfJ"/>
                         <outlet property="panGestureRecognizer" destination="nB8-3s-LsY" id="vQg-7j-e0s"/>
                         <outlet property="rescheduleView" destination="2hi-GA-ZF3" id="oiJ-uB-sgD"/>
+                        <outlet property="results1View" destination="PgC-w5-Zql" id="WPw-MV-1Vk"/>
+                        <outlet property="results2View" destination="3vc-ZU-u7q" id="Vk5-AS-3zt"/>
                         <outlet property="scrollView" destination="la9-E2-30I" id="KQt-SY-0b3"/>
                         <outlet property="searchView" destination="zrF-Ln-Ct1" id="dPh-zc-xlE"/>
                         <outlet property="sendButton" destination="ORP-Lb-E3Q" id="z2f-TJ-Cwd"/>
@@ -216,6 +226,8 @@
         <image name="message" width="320" height="86"/>
         <image name="nav" width="320" height="65"/>
         <image name="reschedule" width="320" height="568"/>
+        <image name="resultsState1" width="320" height="297"/>
+        <image name="resultsState2" width="320" height="297"/>
         <image name="search" width="320" height="42"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
