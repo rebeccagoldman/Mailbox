@@ -120,6 +120,20 @@ class ViewController: UIViewController, UIScrollViewDelegate {
 //    }
 //    
     
+    @IBAction func didTapCancel(sender: AnyObject) {
+        textField.resignFirstResponder()
+        
+        UIView.animateWithDuration(0.4, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 0.1, options: UIViewAnimationOptions.CurveEaseInOut, animations: { () -> Void in
+            
+            self.darkView.alpha = 0
+            self.composeView.frame = CGRectMake(0, 1136, 320, 225)
+            
+            }, completion: nil )
+        
+        
+    }
+    
+    
     @IBAction func didTapCompose(sender: AnyObject) {
         
         textField.becomeFirstResponder()

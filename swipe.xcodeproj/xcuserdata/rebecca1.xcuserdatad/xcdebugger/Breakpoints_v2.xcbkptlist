@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "swipe/ViewController.swift"
-            timestampString = "454193811.881399"
+            timestampString = "454194044.991438"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "415"
-            endingLineNumber = "415"
+            startingLineNumber = "429"
+            endingLineNumber = "429"
             landmarkName = "didPan(_:)"
             landmarkType = "5">
          </BreakpointContent>
