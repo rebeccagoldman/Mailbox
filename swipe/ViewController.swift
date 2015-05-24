@@ -28,6 +28,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var laterIconView: UIImageView!
     @IBOutlet weak var deleteIconView: UIImageView!
     @IBOutlet weak var listView: UIImageView!
+    @IBOutlet weak var containerView: UIView!
     
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var feedView: UIImageView!
@@ -42,6 +43,13 @@ class ViewController: UIViewController {
     var alpha: Int!
     var didPanRight: Bool!
     var didPanLeft: Bool!
+    
+    @IBOutlet var superView: UIView!
+    var closedPosition: CGFloat!
+    var openPosition: CGFloat!
+    
+    var panGesture: UIPanGestureRecognizer!
+
     
     @IBOutlet weak var rescheduleView: UIImageView!
     
@@ -58,10 +66,132 @@ class ViewController: UIViewController {
         listView.alpha = 0
         actionView.frame = CGRectMake(0, 65, self.view.frame.width, 86)
         
+        var edgeGesture = UIScreenEdgePanGestureRecognizer(target: self, action: "onEdgePan:")
+        edgeGesture.edges = UIRectEdge.Left
+        containerView.addGestureRecognizer(edgeGesture)
+        containerView.userInteractionEnabled = true 
+
+        println("container view height: \(containerView.frame)")
+        
 
 //        laterIconView.alpha = 0
 
     }
+    
+    func onEdgePan(sender: UIScreenEdgePanGestureRecognizer) {
+        
+        var translation = sender.translationInView(view)
+        var velocity = sender.velocityInView(view)
+        panGesture = UIPanGestureRecognizer(target: self, action: "didPanView:")
+
+        
+        if sender.state == UIGestureRecognizerState.Began {
+            
+            initialCenter = containerView.center
+            closedPosition = superView.center.x
+            openPosition = closedPosition + 265
+            
+        } else if sender.state == UIGestureRecognizerState.Changed {
+            
+            containerView.center.x = CGFloat(initialCenter.x + translation.x)
+            
+        
+            
+        } else if sender.state == UIGestureRecognizerState.Ended {
+            
+            
+            if containerView.center.x >= 320 { // this is open
+                
+                
+                UIView.animateWithDuration(0.3, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 0.1, options: UIViewAnimationOptions.CurveEaseInOut, animations: { () -> Void in
+                    
+                    self.containerView.center.x = self.openPosition
+                    
+                    }, completion: { (Bool) -> Void in
+                        
+                        self.containerView.addGestureRecognizer(self.panGesture)
+                        self.panGesture.enabled = true
+
+                        println("is this adding the gesture")
+
+                        
+                })
+                
+                
+            } else {
+                
+                
+                UIView.animateWithDuration(0.3, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 0.1, options: UIViewAnimationOptions.CurveEaseInOut, animations: { () -> Void in
+                    
+                    self.containerView.center.x = self.closedPosition
+
+                    }, completion: { (Bool) -> Void in
+
+                    self.containerView.removeGestureRecognizer(self.panGesture)
+
+                    self.panGesture.enabled = false
+           
+                })
+
+            
+            }
+  
+                
+            }
+
+    
+    }
+    
+    
+    @IBAction func didPanView(sender: UIPanGestureRecognizer) {
+        
+        var translation = sender.translationInView(view)
+        var velocity = sender.velocityInView(view)
+
+        if sender.state == UIGestureRecognizerState.Began {
+            
+            initialCenter = containerView.center
+            closedPosition = superView.center.x
+            openPosition = closedPosition + 265
+
+        } else if sender.state == UIGestureRecognizerState.Changed {
+            
+            containerView.center.x = CGFloat(initialCenter.x + translation.x)
+            
+        } else if sender.state == UIGestureRecognizerState.Ended {
+            
+            
+                        if containerView.center.x >= 320 { // this block works
+            
+            
+                            UIView.animateWithDuration(0.3, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 0.1, options: UIViewAnimationOptions.CurveEaseInOut, animations: { () -> Void in
+            
+                                self.containerView.center.x = self.openPosition
+            
+                                }, completion: nil)
+            
+            
+        } else {
+            
+            
+            UIView.animateWithDuration(0.3, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 0.1, options: UIViewAnimationOptions.CurveEaseInOut, animations: { () -> Void in
+                
+                self.containerView.center.x = self.closedPosition
+                self.panGesture.enabled = false
+
+                
+                }, completion: nil )
+
+                
+            
+            
+            
+        }
+        }
+    }
+    
+    
+    
 
     @IBAction func didPan(sender: UIPanGestureRecognizer) {
         
