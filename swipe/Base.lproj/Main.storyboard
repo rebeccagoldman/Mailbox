@@ -46,10 +46,18 @@
                             <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="reschedule" id="2hi-GA-ZF3">
                                 <rect key="frame" x="0.0" y="-3" width="320" height="568"/>
                                 <autoresizingMask key="autoresizingMask"/>
+                                <gestureRecognizers/>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="9zu-ke-NX4" appends="YES" id="kKq-I8-Q0Q"/>
+                                </connections>
                             </imageView>
                             <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="list" id="UWu-GF-QTJ">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <autoresizingMask key="autoresizingMask"/>
+                                <gestureRecognizers/>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="SM0-6s-4h9" appends="YES" id="QNO-Jo-q6n"/>
+                                </connections>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
@@ -64,6 +72,7 @@
                         <outlet property="messageView" destination="50P-UJ-ghS" id="g1m-50-HfJ"/>
                         <outlet property="panGestureRecognizer" destination="nB8-3s-LsY" id="vQg-7j-e0s"/>
                         <outlet property="rescheduleView" destination="2hi-GA-ZF3" id="oiJ-uB-sgD"/>
+                        <outlet property="tapGestureRecognizer" destination="9zu-ke-NX4" id="F8x-fx-NKG"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
@@ -72,6 +81,16 @@
                         <action selector="didPan:" destination="vXZ-lx-hvc" id="NAH-PT-gcV"/>
                     </connections>
                 </panGestureRecognizer>
+                <tapGestureRecognizer id="SM0-6s-4h9">
+                    <connections>
+                        <action selector="didTapListView:" destination="vXZ-lx-hvc" id="dao-ph-SXc"/>
+                    </connections>
+                </tapGestureRecognizer>
+                <tapGestureRecognizer id="9zu-ke-NX4">
+                    <connections>
+                        <action selector="didTapRescheduleView:" destination="vXZ-lx-hvc" id="0Js-nb-eot"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="402" y="397"/>
         </scene>

@@ -11,6 +11,8 @@ import UIKit
 class ViewController: UIViewController {
 
     @IBOutlet var panGestureRecognizer: UIPanGestureRecognizer!
+    @IBOutlet var tapGestureRecognizer: UITapGestureRecognizer!
+
     @IBOutlet weak var actionView: UIView!
     @IBOutlet weak var messageView: UIImageView!
     
@@ -47,8 +49,11 @@ class ViewController: UIViewController {
         archiveIconView.alpha = 0
         deleteIconView.alpha = 0
         listIconView.alpha = 0
+        laterIconView.alpha = 0
         rescheduleView.alpha = 0
         listView.alpha = 0
+        
+        
 
 //        laterIconView.alpha = 0
 
@@ -195,6 +200,7 @@ class ViewController: UIViewController {
                     
                     }, completion: nil)
                 
+                
                 // if list icon is visible, animate icon + message offscreen
             } else if listIconView.alpha == 1 && messageView.center.x <= transitionToBrown {
                 
@@ -222,7 +228,21 @@ class ViewController: UIViewController {
 
 
 
+    @IBAction func didTapRescheduleView(sender: AnyObject) {
+        
+        rescheduleView.alpha = 0
+        actionView.removeFromSuperview()
+
+        
+    }
     
+    @IBAction func didTapListView(sender: AnyObject) {
+        
+        listView.alpha = 0
+        actionView.removeFromSuperview()
+
+        
+    }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
