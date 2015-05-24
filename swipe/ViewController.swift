@@ -61,6 +61,13 @@ class ViewController: UIViewController, UIScrollViewDelegate {
     var closedPosition: CGFloat!
     var openPosition: CGFloat!
     
+    @IBOutlet weak var archiveView: UIImageView!
+    @IBOutlet weak var laterView: UIImageView!
+
+    @IBOutlet weak var archiveNavView: UIImageView!
+    @IBOutlet weak var mailNavView: UIImageView!
+    @IBOutlet weak var laterNavView: UIImageView!
+    
     @IBOutlet weak var textField: UITextField!
     
     @IBOutlet weak var searchView: UIView!
@@ -77,6 +84,7 @@ class ViewController: UIViewController, UIScrollViewDelegate {
 
         segmentedControl.selectedSegmentIndex = 1
         
+        segmentedControl.tintColor = blueColor
 
         
         scrollView.contentSize = feedView.image!.size
@@ -90,6 +98,17 @@ class ViewController: UIViewController, UIScrollViewDelegate {
         darkView.alpha = 0
         results1View.alpha = 0
         results2View.alpha = 0
+        archiveView.center.x = 640
+        laterView.center.x = -640
+        
+        archiveNavView.alpha = 0
+        mailNavView.alpha = 1
+        laterNavView.alpha = 0
+
+
+
+
+
         actionView.frame = CGRectMake(0, 65, self.view.frame.width, 86)
         
         sendButton.addTarget(self, action: "didTapSend:", forControlEvents: UIControlEvents.TouchUpInside)
@@ -129,10 +148,30 @@ class ViewController: UIViewController, UIScrollViewDelegate {
             
             segmentedControl.tintColor = yellowColor
             
+            UIView.animateWithDuration(0.24, delay: 0.01, usingSpringWithDamping: 1, initialSpringVelocity: 0.8, options: UIViewAnimationOptions.CurveEaseInOut, animations: { () -> Void in
+                
+                self.laterView.center.x = 160
+                self.laterNavView.alpha = 1
+
+                
+                
+                }, completion: nil )
+            
             
         } else if segmentedControl.selectedSegmentIndex == 1  {
             
             segmentedControl.tintColor = blueColor
+            
+            UIView.animateWithDuration(0.24, delay: 0.01, usingSpringWithDamping: 1, initialSpringVelocity: 0.8, options: UIViewAnimationOptions.CurveEaseInOut, animations: { () -> Void in
+                
+                self.archiveView.center.x = 640
+                self.laterView.center.x = -640
+                self.laterNavView.alpha = 0
+                self.archiveNavView.alpha = 0
+                
+                
+                }, completion: nil )
+
             
             
         }  else if segmentedControl.selectedSegmentIndex == 2  {
@@ -141,8 +180,15 @@ class ViewController: UIViewController, UIScrollViewDelegate {
             
             segmentedControl.tintColor = greenColor
             
-            
-        }
+            UIView.animateWithDuration(0.24, delay: 0.01, usingSpringWithDamping: 1, initialSpringVelocity: 0.8, options: UIViewAnimationOptions.CurveEaseInOut, animations: { () -> Void in
+                
+                self.archiveView.center.x = 160
+                self.archiveNavView.alpha = 1
+                
+                
+                }, completion: nil )
+
+                    }
     }
   
 
@@ -177,18 +223,18 @@ class ViewController: UIViewController, UIScrollViewDelegate {
             })
         
         self.textField.endEditing(true)
-        
-
-        
+    
+    
 
     }
+
 
     
     @IBAction func didFillToField(sender: UITextField) {
         
-        if textField.text == "rebecca" {
-        
-        results1View.alpha = 1
+        if textField.text == "re" {
+            
+            results1View.alpha = 1
             
         } else if textField.text == "rebecca@" {
             
@@ -207,29 +253,29 @@ class ViewController: UIViewController, UIScrollViewDelegate {
         }
         
     }
-   
+
+
+
+func scrollViewDidScroll(sender: UIScrollView) {
     
-//    func scrollViewDidScroll(sender: UIScrollView) {
-//        
-//
-//        var scrollOffset: CGFloat = scrollView.contentOffset.y
-//
-//        if sender.state == sender.scrollViewDidScrollToTop() {
-//            
-//            println("scrollView action fired: \(scrollView.center.y)")
-//
-//            
-//            UIView.animateWithDuration(0.3, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 0.1, options: UIViewAnimationOptions.CurveEaseInOut, animations: { () -> Void in
-//
-//                self.searchView.frame = CGRectMake(0, 52, self.view.frame.width, 118)
-//                
-//                }, completion: nil)
-//        
-//
-//        }
-//    }
-//    
     
+    var scrollOffset: CGFloat = scrollView.contentOffset.y
+    
+    
+    println("scrollView action fired: \(scrollView.center.y)")
+    
+    
+    UIView.animateWithDuration(0.3, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 0.1, options: UIViewAnimationOptions.CurveEaseInOut, animations: { () -> Void in
+        
+        self.searchView.frame = CGRectMake(0, 52, self.view.frame.width, 118)
+        
+        }, completion: nil)
+    
+    
+    
+    }
+    
+
     // dismiss compose view
     @IBAction func didTapCancel(sender: AnyObject) {
         textField.resignFirstResponder()
@@ -273,7 +319,7 @@ class ViewController: UIViewController, UIScrollViewDelegate {
             
             initialCenter = containerView.center
             closedPosition = superView.center.x
-            openPosition = closedPosition + 265
+            openPosition = closedPosition + 280
             
         } else if sender.state == UIGestureRecognizerState.Changed {
             
@@ -336,7 +382,7 @@ class ViewController: UIViewController, UIScrollViewDelegate {
             
             initialCenter = containerView.center
             closedPosition = superView.center.x
-            openPosition = closedPosition + 265
+            openPosition = closedPosition + 280
 
         } else if sender.state == UIGestureRecognizerState.Changed {
             

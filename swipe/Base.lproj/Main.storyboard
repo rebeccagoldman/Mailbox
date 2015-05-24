@@ -24,8 +24,8 @@
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <subviews>
-                                            <view contentMode="scaleToFill" id="Kcn-6y-p3b">
-                                                <rect key="frame" x="0.0" y="65" width="320" height="86"/>
+                                            <view contentMode="scaleToFill" id="Kcn-6y-p3b" userLabel="actionView">
+                                                <rect key="frame" x="0.0" y="0.0" width="320" height="86"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <subviews>
                                                     <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="archive_icon" id="68L-f9-oTp">
@@ -74,10 +74,30 @@
                                                 <rect key="frame" x="0.0" y="151" width="320" height="1202"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                             </imageView>
+                                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="laterView" id="Vpf-xW-PgP">
+                                                <rect key="frame" x="0.0" y="63" width="320" height="515"/>
+                                                <autoresizingMask key="autoresizingMask"/>
+                                            </imageView>
+                                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFit" image="archiveView" id="ubr-iA-rgp">
+                                                <rect key="frame" x="0.0" y="65" width="320" height="514"/>
+                                                <autoresizingMask key="autoresizingMask"/>
+                                            </imageView>
                                         </subviews>
                                     </scrollView>
                                     <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="nav" id="ZyS-68-9Ri">
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="65"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                    </imageView>
+                                    <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="mailViewNavButtons" id="I71-TM-X99">
+                                        <rect key="frame" x="0.0" y="10" width="320" height="54"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                    </imageView>
+                                    <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" alpha="0.40000000000000002" contentMode="center" image="archiveViewNavButtons" id="9do-fC-39r">
+                                        <rect key="frame" x="0.0" y="10" width="320" height="54"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                    </imageView>
+                                    <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" alpha="0.40000000000000002" contentMode="center" image="laterViewNavButtons" id="am8-cD-8Se">
+                                        <rect key="frame" x="0.0" y="10" width="320" height="54"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                     </imageView>
                                     <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" id="d9R-WD-TEF">
@@ -93,12 +113,12 @@
                                         </connections>
                                     </segmentedControl>
                                     <view contentMode="scaleToFill" id="c6J-3V-0xX">
-                                        <rect key="frame" x="-3" y="-586" width="325" height="572"/>
+                                        <rect key="frame" x="-3" y="0.0" width="325" height="572"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                     </view>
                                     <view contentMode="scaleToFill" id="RTM-gh-mkd" userLabel="Compose view">
-                                        <rect key="frame" x="-4" y="-568" width="360" height="225"/>
+                                        <rect key="frame" x="-4" y="82" width="360" height="225"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <subviews>
                                             <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="compose" id="I61-K6-Xyn">
@@ -158,11 +178,18 @@
                                             <action selector="didTapCompose:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="bU7-TY-fmh"/>
                                         </connections>
                                     </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="i8V-zE-u6T">
+                                        <rect key="frame" x="0.0" y="16" width="52" height="46"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" red="0.99045138889999995" green="0.52321439589999996" blue="0.1084980401" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
                             <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="list" id="UWu-GF-QTJ">
-                                <rect key="frame" x="0.0" y="-568" width="320" height="568"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <gestureRecognizers/>
                                 <connections>
@@ -170,7 +197,7 @@
                                 </connections>
                             </imageView>
                             <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="reschedule" id="2hi-GA-ZF3">
-                                <rect key="frame" x="0.0" y="-568" width="320" height="568"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <gestureRecognizers/>
                                 <connections>
@@ -183,6 +210,8 @@
                     <connections>
                         <outlet property="actionView" destination="Kcn-6y-p3b" id="BGH-i3-sM9"/>
                         <outlet property="archiveIconView" destination="68L-f9-oTp" id="aMZ-4V-0Gp"/>
+                        <outlet property="archiveNavView" destination="9do-fC-39r" id="Tr4-hn-ddd"/>
+                        <outlet property="archiveView" destination="ubr-iA-rgp" id="LSU-uP-MVs"/>
                         <outlet property="composeButton" destination="5ZL-v5-nfd" id="gpv-GK-5dc"/>
                         <outlet property="composeView" destination="RTM-gh-mkd" id="hcc-Sw-sJF"/>
                         <outlet property="containerView" destination="vJS-Be-tnu" id="j51-oM-iVr"/>
@@ -190,8 +219,11 @@
                         <outlet property="deleteIconView" destination="cXA-83-KW5" id="JAo-Hs-HcI"/>
                         <outlet property="feedView" destination="FV5-OL-0Gh" id="jGt-FF-rb6"/>
                         <outlet property="laterIconView" destination="hsl-08-vyt" id="cJa-re-Qmg"/>
+                        <outlet property="laterNavView" destination="am8-cD-8Se" id="bCi-bw-m4N"/>
+                        <outlet property="laterView" destination="Vpf-xW-PgP" id="CeT-Mu-gRu"/>
                         <outlet property="listIconView" destination="Dmj-6B-GKi" id="tzJ-KJ-r6m"/>
                         <outlet property="listView" destination="UWu-GF-QTJ" id="DV8-kb-THX"/>
+                        <outlet property="mailNavView" destination="I71-TM-X99" id="qDK-Q9-Jwl"/>
                         <outlet property="messageView" destination="50P-UJ-ghS" id="g1m-50-HfJ"/>
                         <outlet property="panGestureRecognizer" destination="nB8-3s-LsY" id="vQg-7j-e0s"/>
                         <outlet property="rescheduleView" destination="2hi-GA-ZF3" id="oiJ-uB-sgD"/>
@@ -227,16 +259,21 @@
         </scene>
     </scenes>
     <resources>
+        <image name="archiveView" width="320" height="514"/>
+        <image name="archiveViewNavButtons" width="320" height="54"/>
         <image name="archive_icon" width="25" height="25"/>
         <image name="archive_nav_icon" width="25" height="20"/>
         <image name="compose" width="640" height="452"/>
         <image name="delete_icon" width="25" height="25"/>
         <image name="feed" width="320" height="1202"/>
         <image name="help_label" width="320" height="37"/>
+        <image name="laterView" width="320" height="515"/>
+        <image name="laterViewNavButtons" width="320" height="54"/>
         <image name="later_icon" width="25" height="25"/>
         <image name="later_nav_icon" width="25" height="20"/>
         <image name="list" width="320" height="568"/>
         <image name="list_icon" width="25" height="25"/>
+        <image name="mailViewNavButtons" width="320" height="55"/>
         <image name="mail_nav_icon" width="25" height="20"/>
         <image name="menu" width="320" height="568"/>
         <image name="message" width="320" height="86"/>
