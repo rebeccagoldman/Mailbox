@@ -29,6 +29,9 @@ class ViewController: UIViewController {
     @IBOutlet weak var deleteIconView: UIImageView!
     @IBOutlet weak var listView: UIImageView!
     
+    @IBOutlet weak var scrollView: UIScrollView!
+    @IBOutlet weak var feedView: UIImageView!
+    
     var initialCenter: CGPoint!
     var initialArchiveIconCenter: CGPoint!
     var initialDeleteIconCenter: CGPoint!
@@ -45,6 +48,7 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        scrollView.contentSize = feedView.image!.size
         actionView.backgroundColor = grayColor
         archiveIconView.alpha = 0
         deleteIconView.alpha = 0
@@ -64,7 +68,6 @@ class ViewController: UIViewController {
         var velocity = sender.velocityInView(view)
         var location = sender.locationInView(view)
         var translation = sender.translationInView(view)
-       
         
         if panGestureRecognizer.state == UIGestureRecognizerState.Began {
             didPanRight = velocity.x > 0
