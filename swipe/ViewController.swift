@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, UIScrollViewDelegate {
 
     @IBOutlet var panGestureRecognizer: UIPanGestureRecognizer!
     @IBOutlet var tapGestureRecognizer: UITapGestureRecognizer!
@@ -30,8 +30,11 @@ class ViewController: UIViewController {
     @IBOutlet weak var listView: UIImageView!
     @IBOutlet weak var containerView: UIView!
     
+    @IBOutlet weak var composeView: UIView!
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var feedView: UIImageView!
+    
+    @IBOutlet weak var composeButton: UIButton!
     
     var initialCenter: CGPoint!
     var initialArchiveIconCenter: CGPoint!
@@ -43,10 +46,16 @@ class ViewController: UIViewController {
     var alpha: Int!
     var didPanRight: Bool!
     var didPanLeft: Bool!
+    var initialScrollViewPosition: CGFloat!
     
+    @IBOutlet weak var darkView: UIView!
     @IBOutlet var superView: UIView!
     var closedPosition: CGFloat!
     var openPosition: CGFloat!
+    
+    @IBOutlet weak var textField: UITextField!
+    
+    @IBOutlet weak var searchView: UIView!
     
     var panGesture: UIPanGestureRecognizer!
 
@@ -64,19 +73,69 @@ class ViewController: UIViewController {
         laterIconView.alpha = 0
         rescheduleView.alpha = 0
         listView.alpha = 0
+        darkView.alpha = 0
         actionView.frame = CGRectMake(0, 65, self.view.frame.width, 86)
+
+        
+        searchView.frame = CGRectMake(0, -52, self.view.frame.width, 118)
+        composeView.frame = CGRectMake(0, 1136, 320, 225)
+
         
         var edgeGesture = UIScreenEdgePanGestureRecognizer(target: self, action: "onEdgePan:")
         edgeGesture.edges = UIRectEdge.Left
         containerView.addGestureRecognizer(edgeGesture)
-        containerView.userInteractionEnabled = true 
+        containerView.userInteractionEnabled = true
+        initialScrollViewPosition = scrollView.center.y
+        println("initialScrollViewPosition center: \(scrollView.center.y)")
+
+        
+        scrollView.delegate = self
 
         println("container view height: \(containerView.frame)")
         
 
-//        laterIconView.alpha = 0
 
     }
+    
+    
+    
+//    func scrollViewDidScroll(sender: UIScrollView) {
+//        
+//
+//        var scrollOffset: CGFloat = scrollView.contentOffset.y
+//
+//        if sender.state == sender.scrollViewDidScrollToTop() {
+//            
+//            println("scrollView action fired: \(scrollView.center.y)")
+//
+//            
+//            UIView.animateWithDuration(0.3, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 0.1, options: UIViewAnimationOptions.CurveEaseInOut, animations: { () -> Void in
+//
+//                self.searchView.frame = CGRectMake(0, 52, self.view.frame.width, 118)
+//                
+//                }, completion: nil)
+//        
+//
+//        }
+//    }
+//    
+    
+    @IBAction func didTapCompose(sender: AnyObject) {
+        
+        textField.becomeFirstResponder()
+
+        UIView.animateWithDuration(0.4, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 0.1, options: UIViewAnimationOptions.CurveEaseInOut, animations: { () -> Void in
+            
+            self.darkView.alpha = 0.5
+            self.composeView.frame = CGRectMake(0, 20, 320, 225)
+            
+            }, completion: nil )
+        
+
+        
+        
+    }
+    
     
     func onEdgePan(sender: UIScreenEdgePanGestureRecognizer) {
         
@@ -226,6 +285,9 @@ class ViewController: UIViewController {
             // change to green and show archive icon
             if didPanRight == true {
                 
+                laterIconView.alpha = 0
+
+                
                 if messageView.center.x >= transitionToGreen && messageView.center.x < transitionToRed {
                     
                     self.archiveIconView.center.x = translation.x - 25
@@ -370,6 +432,8 @@ class ViewController: UIViewController {
     }
 
 
+    
+    
 
     @IBAction func didTapRescheduleView(sender: AnyObject) {
         
