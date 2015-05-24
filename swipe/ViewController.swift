@@ -56,7 +56,7 @@ class ViewController: UIViewController {
         laterIconView.alpha = 0
         rescheduleView.alpha = 0
         listView.alpha = 0
-        
+        actionView.frame = CGRectMake(0, 65, self.view.frame.width, 86)
         
 
 //        laterIconView.alpha = 0
@@ -233,16 +233,43 @@ class ViewController: UIViewController {
 
     @IBAction func didTapRescheduleView(sender: AnyObject) {
         
-        rescheduleView.alpha = 0
-        actionView.removeFromSuperview()
+        UIView.animateWithDuration(0.2, delay: 0.0, options: UIViewAnimationOptions.CurveEaseInOut, animations: { () -> Void in
+            
+            self.rescheduleView.alpha = 0
+
+            
+            }, completion: { (Bool) -> Void in
+                
+                
+                UIView.animateWithDuration(0.2, delay: 0, options: UIViewAnimationOptions.CurveEaseInOut, animations: { () -> Void in
+                    self.actionView.frame = CGRectMake(0, 65, self.view.frame.width, 0)
+                    self.feedView.center.y -= 88
+
+                    }, completion: nil)
+                //                self.actionView.removeFromSuperview()
+                
+        })
+
 
         
     }
     
     @IBAction func didTapListView(sender: AnyObject) {
         
-        listView.alpha = 0
-        actionView.removeFromSuperview()
+        UIView.animateWithDuration(0.2, delay: 0.0, options: UIViewAnimationOptions.CurveEaseInOut, animations: { () -> Void in
+            
+            self.listView.alpha = 0
+            
+            
+            }, completion: { (Bool) -> Void in
+                
+                UIView.animateWithDuration(0.2, delay: 0, options: UIViewAnimationOptions.CurveEaseInOut, animations: { () -> Void in
+                    self.actionView.frame = CGRectMake(0, 65, self.view.frame.width, 0)
+                    self.feedView.center.y -= 88
+                }, completion: nil)
+                
+        })
+        
 
         
     }
