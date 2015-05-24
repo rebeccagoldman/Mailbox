@@ -24,6 +24,14 @@
                                         <rect key="frame" x="193" y="28" width="25" height="25"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                     </imageView>
+                                    <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="later_icon" id="hsl-08-vyt">
+                                        <rect key="frame" x="275" y="30" width="25" height="25"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                    </imageView>
+                                    <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="list_icon" id="Dmj-6B-GKi">
+                                        <rect key="frame" x="199" y="30" width="25" height="25"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                    </imageView>
                                     <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="message" id="50P-UJ-ghS">
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="86"/>
                                         <autoresizingMask key="autoresizingMask"/>
@@ -35,6 +43,14 @@
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
+                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="reschedule" id="2hi-GA-ZF3">
+                                <rect key="frame" x="0.0" y="-3" width="320" height="568"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                            </imageView>
+                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="list" id="UWu-GF-QTJ">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
@@ -42,8 +58,12 @@
                         <outlet property="actionView" destination="Kcn-6y-p3b" id="BGH-i3-sM9"/>
                         <outlet property="archiveIconView" destination="68L-f9-oTp" id="aMZ-4V-0Gp"/>
                         <outlet property="deleteIconView" destination="cXA-83-KW5" id="JAo-Hs-HcI"/>
+                        <outlet property="laterIconView" destination="hsl-08-vyt" id="cJa-re-Qmg"/>
+                        <outlet property="listIconView" destination="Dmj-6B-GKi" id="tzJ-KJ-r6m"/>
+                        <outlet property="listView" destination="UWu-GF-QTJ" id="DV8-kb-THX"/>
                         <outlet property="messageView" destination="50P-UJ-ghS" id="g1m-50-HfJ"/>
                         <outlet property="panGestureRecognizer" destination="nB8-3s-LsY" id="vQg-7j-e0s"/>
+                        <outlet property="rescheduleView" destination="2hi-GA-ZF3" id="oiJ-uB-sgD"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
@@ -59,7 +79,11 @@
     <resources>
         <image name="archive_icon" width="25" height="25"/>
         <image name="delete_icon" width="25" height="25"/>
+        <image name="later_icon" width="25" height="25"/>
+        <image name="list" width="320" height="568"/>
+        <image name="list_icon" width="25" height="25"/>
         <image name="message" width="320" height="86"/>
+        <image name="reschedule" width="320" height="568"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
