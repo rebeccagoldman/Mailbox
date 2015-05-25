@@ -9,10 +9,10 @@
 import UIKit
 
 class ViewController: UIViewController, UIScrollViewDelegate {
-
+    
     @IBOutlet var panGestureRecognizer: UIPanGestureRecognizer!
     @IBOutlet var tapGestureRecognizer: UITapGestureRecognizer!
-
+    
     @IBOutlet weak var actionView: UIView!
     @IBOutlet weak var messageView: UIImageView!
     
@@ -23,10 +23,14 @@ class ViewController: UIViewController, UIScrollViewDelegate {
     let redColor = UIColor(red: 231/255, green: 61/255, blue: 14/255, alpha: 1)
     let grayColor = UIColor(red: 178/255, green: 178/255, blue: 178/255, alpha: 1)
     let lightGrayColor = UIColor(red: 247/255, green: 247/255, blue: 247/255, alpha: 1)
-
+    
+    
+    var scrollOffset: CGFloat!
+    
     @IBOutlet weak var segmentedControl: UISegmentedControl!
     
     
+    @IBOutlet weak var cancelButton: UIButton!
     @IBOutlet weak var archiveIconView: UIImageView!
     @IBOutlet weak var listIconView: UIImageView!
     @IBOutlet weak var laterIconView: UIImageView!
@@ -63,7 +67,7 @@ class ViewController: UIViewController, UIScrollViewDelegate {
     
     @IBOutlet weak var archiveView: UIImageView!
     @IBOutlet weak var laterView: UIImageView!
-
+    
     @IBOutlet weak var archiveNavView: UIImageView!
     @IBOutlet weak var mailNavView: UIImageView!
     @IBOutlet weak var laterNavView: UIImageView!
@@ -73,42 +77,41 @@ class ViewController: UIViewController, UIScrollViewDelegate {
     @IBOutlet weak var searchView: UIView!
     
     var panGesture: UIPanGestureRecognizer!
-
+    
     
     @IBOutlet weak var rescheduleView: UIImageView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        println("what is the: \(segmentedControl.selectedSegmentIndex)")
-
+        // set initial segmented control colors
         segmentedControl.selectedSegmentIndex = 1
-        
         segmentedControl.tintColor = blueColor
-
         
-        scrollView.contentSize = feedView.image!.size
+        // set scrollView
+        scrollView.contentSize = CGSizeMake(320, 1350)
+        
+        // set initial background color for actionView
         actionView.backgroundColor = grayColor
+        
+        // hide all message action icons
         archiveIconView.alpha = 0
         deleteIconView.alpha = 0
         listIconView.alpha = 0
         laterIconView.alpha = 0
         rescheduleView.alpha = 0
+        
+        // hide views that will be triggered in functions
         listView.alpha = 0
         darkView.alpha = 0
         results1View.alpha = 0
         results2View.alpha = 0
-        archiveView.center.x = 640
-        laterView.center.x = -640
-        
         archiveNavView.alpha = 0
         mailNavView.alpha = 1
         laterNavView.alpha = 0
-
-
-
-
-
+        archiveView.center.x = 640
+        laterView.center.x = -640
+        
         actionView.frame = CGRectMake(0, 65, self.view.frame.width, 86)
         
         sendButton.addTarget(self, action: "didTapSend:", forControlEvents: UIControlEvents.TouchUpInside)
@@ -117,14 +120,14 @@ class ViewController: UIViewController, UIScrollViewDelegate {
         sendButton.setTitle("Send", forState: UIControlState.Normal)
         sendButton.frame = CGRectMake(274, sendButton.center.y - 18, 40, 34)
         sendButton.alpha = 0
-
-        self.composeView.addSubview(sendButton)
-
-
         
-        searchView.frame = CGRectMake(0, -52, self.view.frame.width, 118)
+        self.composeView.addSubview(sendButton)
+        
+        searchView.center.y = 5
         composeView.frame = CGRectMake(0, 1136, 320, 225)
-
+        
+        scrollView.contentOffset = CGPoint(x: 0, y: -118)
+        
         
         var edgeGesture = UIScreenEdgePanGestureRecognizer(target: self, action: "onEdgePan:")
         edgeGesture.edges = UIRectEdge.Left
@@ -132,14 +135,14 @@ class ViewController: UIViewController, UIScrollViewDelegate {
         containerView.userInteractionEnabled = true
         initialScrollViewPosition = scrollView.center.y
         println("initialScrollViewPosition center: \(scrollView.center.y)")
-
+        
         
         scrollView.delegate = self
-
+        
         println("container view height: \(containerView.frame)")
         
-
-
+        
+        
     }
     
     @IBAction func didTapSegment(sender: UISegmentedControl) {
@@ -152,7 +155,7 @@ class ViewController: UIViewController, UIScrollViewDelegate {
                 
                 self.laterView.center.x = 160
                 self.laterNavView.alpha = 1
-
+                
                 
                 
                 }, completion: nil )
@@ -171,7 +174,7 @@ class ViewController: UIViewController, UIScrollViewDelegate {
                 
                 
                 }, completion: nil )
-
+            
             
             
         }  else if segmentedControl.selectedSegmentIndex == 2  {
@@ -187,11 +190,11 @@ class ViewController: UIViewController, UIScrollViewDelegate {
                 
                 
                 }, completion: nil )
-
-                    }
+            
+        }
     }
-  
-
+    
+    
     @IBAction func didTapSend(sender: UIButton) {
         
         println("user tapped send")
@@ -200,35 +203,33 @@ class ViewController: UIViewController, UIScrollViewDelegate {
         var translate2 = CGAffineTransformMakeTranslation(0, self.composeView.center.y - 600)
         var scale1 = CGAffineTransformMakeScale(0.8, 0.8)
         var scale2 = CGAffineTransformMakeScale(0.5, 0.5)
-
-
+        
+        
         
         UIView.animateWithDuration(0.24, delay: 0, usingSpringWithDamping: 0.8, initialSpringVelocity: 0, options: UIViewAnimationOptions.CurveEaseInOut, animations: { () -> Void in
-
-
+            
+            
             self.composeView.transform = CGAffineTransformConcat(translate1, scale1)
-
+            
             
             }, completion: { (Bool) -> Void in
-        
-        
+                
+                
                 UIView.animateWithDuration(0.24, delay: 0.01, usingSpringWithDamping: 0.8, initialSpringVelocity: 0.8, options: UIViewAnimationOptions.CurveEaseInOut, animations: { () -> Void in
                     
                     self.composeView.transform = CGAffineTransformConcat(translate2, scale2)
                     self.darkView.alpha = 0
-
+                    
                     
                     }, completion: nil )
-
-            })
+                
+        })
         
         self.textField.endEditing(true)
-    
-    
-
+        
     }
-
-
+    
+    
     
     @IBAction func didFillToField(sender: UITextField) {
         
@@ -238,45 +239,45 @@ class ViewController: UIViewController, UIScrollViewDelegate {
             
         } else if textField.text == "rebecca@" {
             
-        
-        results1View.alpha = 0
-        results2View.alpha = 1
-
+            
+            results1View.alpha = 0
+            results2View.alpha = 1
+            
             
         }
         
         if textField.text == "rebecca@goldman.org" {
-        
-        results2View.alpha = 0
-        sendButton.alpha = 1
+            
+            results2View.alpha = 0
+            sendButton.alpha = 1
             
         }
         
     }
-
-
-
-func scrollViewDidScroll(sender: UIScrollView) {
     
     
-    var scrollOffset: CGFloat = scrollView.contentOffset.y
+    //
+    //    func scrollViewDidScroll(sender: UIScrollView) {
+    //
+    //        println("this is the content offet: \(scrollView.contentOffset.y)")
+    //
+    //        if scrollView.contentOffset.y >= 118 {
+    //
+    //            println("this is the content offet: \(scrollView.contentOffset.y)")
+    //            UIView.animateWithDuration(0.3, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 0.1, options: UIViewAnimationOptions.CurveEaseInOut, animations: { () -> Void in
+    //
+    //                self.scrollView.contentOffset = CGPoint(x: 0, y: -118)
+    //
+    //
+    //
+    //                }, completion: nil)
+    //        }
+    //
+    //
+    //
+    //           }
     
-    
-    println("scrollView action fired: \(scrollView.center.y)")
-    
-    
-    UIView.animateWithDuration(0.3, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 0.1, options: UIViewAnimationOptions.CurveEaseInOut, animations: { () -> Void in
-        
-        self.searchView.frame = CGRectMake(0, 52, self.view.frame.width, 118)
-        
-        }, completion: nil)
-    
-    
-    
-    }
-    
-
-    // dismiss compose view
+    // dismiss compose view on cancel
     @IBAction func didTapCancel(sender: AnyObject) {
         textField.resignFirstResponder()
         
@@ -290,11 +291,11 @@ func scrollViewDidScroll(sender: UIScrollView) {
         
     }
     
-    
+    // tap compose
     @IBAction func didTapCompose(sender: AnyObject) {
         
         textField.becomeFirstResponder()
-
+        
         UIView.animateWithDuration(0.4, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 0.1, options: UIViewAnimationOptions.CurveEaseInOut, animations: { () -> Void in
             
             self.darkView.alpha = 0.5
@@ -302,18 +303,16 @@ func scrollViewDidScroll(sender: UIScrollView) {
             
             }, completion: nil )
         
-
-        
-        
     }
     
     
+    // setup edge pan
     func onEdgePan(sender: UIScreenEdgePanGestureRecognizer) {
         
         var translation = sender.translationInView(view)
         var velocity = sender.velocityInView(view)
         panGesture = UIPanGestureRecognizer(target: self, action: "didPanView:")
-
+        
         
         if sender.state == UIGestureRecognizerState.Began {
             
@@ -325,7 +324,7 @@ func scrollViewDidScroll(sender: UIScrollView) {
             
             containerView.center.x = CGFloat(initialCenter.x + translation.x)
             
-        
+            
             
         } else if sender.state == UIGestureRecognizerState.Ended {
             
@@ -341,9 +340,9 @@ func scrollViewDidScroll(sender: UIScrollView) {
                         
                         self.containerView.addGestureRecognizer(self.panGesture)
                         self.panGesture.enabled = true
-
+                        
                         println("is this adding the gesture")
-
+                        
                         
                 })
                 
@@ -354,36 +353,90 @@ func scrollViewDidScroll(sender: UIScrollView) {
                 UIView.animateWithDuration(0.3, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 0.1, options: UIViewAnimationOptions.CurveEaseInOut, animations: { () -> Void in
                     
                     self.containerView.center.x = self.closedPosition
-
+                    
                     }, completion: { (Bool) -> Void in
-
-                    self.containerView.removeGestureRecognizer(self.panGesture)
-
-                    self.panGesture.enabled = false
-           
+                        
+                        self.containerView.removeGestureRecognizer(self.panGesture)
+                        
+                        self.panGesture.enabled = false
+                        
                 })
-
-            
-            }
-  
+                
                 
             }
-
+            
+            
+        }
+        
+        
+    }
     
+    // setup for shake to undo
+    override func preferredStatusBarStyle() -> UIStatusBarStyle {
+        
+        return .Default
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        self.becomeFirstResponder()
+    }
+    
+    override func canBecomeFirstResponder() -> Bool {
+        return true
+    }
+    
+    override func motionEnded(motion: UIEventSubtype, withEvent event: UIEvent) {
+        if(event.subtype == UIEventSubtype.MotionShake) {
+            
+            
+            var alert = UIAlertController(title: "Do you want to undo?",
+                message: "",
+                preferredStyle: UIAlertControllerStyle.Alert)
+            
+            alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Default) {
+                UIAlertAction in
+                NSLog("OK Pressed")
+                
+                })
+            
+            
+            alert.addAction(UIAlertAction(title: "Undo", style: UIAlertActionStyle.Default, handler: {(alertAction) -> Void in
+                
+                self.undismissMessage()
+            }))
+            
+            
+            self.presentViewController(alert, animated: true, completion: nil)
+            
+        }
+        
     }
     
     
+    func undismissMessage() {
+        
+        self.messageView.center.x = 160
+        self.actionView.frame = CGRectMake(0, 65, self.view.frame.width, 86)
+        self.feedView.center.y += 88
+        
+        
+    }
+    
+    
+    
+    // pan view
     @IBAction func didPanView(sender: UIPanGestureRecognizer) {
         
         var translation = sender.translationInView(view)
         var velocity = sender.velocityInView(view)
-
+        
         if sender.state == UIGestureRecognizerState.Began {
             
             initialCenter = containerView.center
             closedPosition = superView.center.x
             openPosition = closedPosition + 280
-
+            
         } else if sender.state == UIGestureRecognizerState.Changed {
             
             containerView.center.x = CGFloat(initialCenter.x + translation.x)
@@ -391,38 +444,34 @@ func scrollViewDidScroll(sender: UIScrollView) {
         } else if sender.state == UIGestureRecognizerState.Ended {
             
             
-                        if containerView.center.x >= 320 { // this block works
-            
-            
-                            UIView.animateWithDuration(0.3, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 0.1, options: UIViewAnimationOptions.CurveEaseInOut, animations: { () -> Void in
-            
-                                self.containerView.center.x = self.openPosition
-            
-                                }, completion: nil)
-            
-            
-        } else {
-            
-            
-            UIView.animateWithDuration(0.3, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 0.1, options: UIViewAnimationOptions.CurveEaseInOut, animations: { () -> Void in
+            if containerView.center.x >= 320 { // this block works
                 
-                self.containerView.center.x = self.closedPosition
-                self.panGesture.enabled = false
-
                 
-                }, completion: nil )
-
+                UIView.animateWithDuration(0.3, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 0.1, options: UIViewAnimationOptions.CurveEaseInOut, animations: { () -> Void in
+                    
+                    self.containerView.center.x = self.openPosition
+                    
+                    }, completion: nil)
                 
-            
-            
-            
-        }
+                
+            } else {
+                
+                
+                UIView.animateWithDuration(0.3, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 0.1, options: UIViewAnimationOptions.CurveEaseInOut, animations: { () -> Void in
+                    
+                    self.containerView.center.x = self.closedPosition
+                    self.panGesture.enabled = false
+                    
+                    
+                    }, completion: nil )
+                
+            }
         }
     }
     
     
     
-
+    
     @IBAction func didPan(sender: UIPanGestureRecognizer) {
         
         var velocity = sender.velocityInView(view)
@@ -432,11 +481,11 @@ func scrollViewDidScroll(sender: UIScrollView) {
         if panGestureRecognizer.state == UIGestureRecognizerState.Began {
             didPanRight = velocity.x > 0
             didPanLeft = velocity.x < 0
-
+            
             
             // define initial center of view
             initialCenter = messageView.center
-      
+            
             // define color transition points for right-swipe
             transitionToGreen = messageView.center.x + 60
             transitionToRed = messageView.center.x + 260
@@ -445,7 +494,7 @@ func scrollViewDidScroll(sender: UIScrollView) {
             transitionToYellow = messageView.center.x - 60
             println("Transition to Yellow: \(transitionToYellow)")
             transitionToBrown = messageView.center.x - 260
-
+            
             println("Gesture began at: \(location)")
             
         } else if panGestureRecognizer.state == UIGestureRecognizerState.Changed {
@@ -457,7 +506,7 @@ func scrollViewDidScroll(sender: UIScrollView) {
             if didPanRight == true {
                 
                 laterIconView.alpha = 0
-
+                
                 
                 if messageView.center.x >= transitionToGreen && messageView.center.x < transitionToRed {
                     
@@ -467,7 +516,7 @@ func scrollViewDidScroll(sender: UIScrollView) {
                     
                     actionView.backgroundColor = greenColor
                     
-                // change to red and show cancel icon
+                    // change to red and show cancel icon
                 } else if messageView.center.x >= transitionToRed {
                     
                     actionView.backgroundColor = redColor
@@ -475,21 +524,21 @@ func scrollViewDidScroll(sender: UIScrollView) {
                     self.deleteIconView.alpha = 1
                     self.deleteIconView.center.x = translation.x - 25
                     
-                // change to gray and fade in/out archive icon
+                    // change to gray and fade in/out archive icon
                 } else if messageView.center.x <= transitionToGreen {
                     
                     archiveIconView.alpha = (translation.x / 60)
                     actionView.backgroundColor = grayColor
                     
                 }
-            
+                
             } else if didPanLeft == true {
                 
                 if messageView.center.x <= transitionToYellow && messageView.center.x > transitionToBrown {
                     
                     laterIconView.center.x = messageView.center.x + 185
                     println("later icon center: \(translation.x)")
-
+                    
                     laterIconView.alpha = 1
                     listIconView.alpha = 0
                     
@@ -508,7 +557,7 @@ func scrollViewDidScroll(sender: UIScrollView) {
                     
                     laterIconView.alpha = -(translation.x / 60)
                     println("alpha: \(-(translation.x / 60))")
-
+                    
                     
                     actionView.backgroundColor = grayColor
                     
@@ -536,10 +585,10 @@ func scrollViewDidScroll(sender: UIScrollView) {
                             self.feedView.center.y -= 88
                             
                             }, completion: nil)
-
-                     })
-            
-            // if archive icon is visible, animate icon + message offscreen
+                        
+                })
+                
+                // if archive icon is visible, animate icon + message offscreen
             } else if messageView.center.x >= transitionToGreen && velocity.x > 0 {
                 
                 UIView.animateWithDuration(0.5, delay: 0.0, options: UIViewAnimationOptions.CurveEaseInOut, animations: { () -> Void in
@@ -556,8 +605,8 @@ func scrollViewDidScroll(sender: UIScrollView) {
                             }, completion: nil)
                         
                 })
-            
-            // if gray background is visible, return to original position
+                
+                // if gray background is visible, return to original position
             } else if actionView.backgroundColor == grayColor {
                 
                 messageView.center.x = initialCenter.x
@@ -586,8 +635,8 @@ func scrollViewDidScroll(sender: UIScrollView) {
                     self.listIconView.center.x = -600
                     self.listView.alpha = 1
                     self.actionView.backgroundColor = self.brownColor
-
-
+                    
+                    
                     }, completion: nil)
                 
                 // if gray background is visible, return to original position
@@ -601,17 +650,17 @@ func scrollViewDidScroll(sender: UIScrollView) {
         
         
     }
-
-
     
     
-
+    
+    
+    
     @IBAction func didTapRescheduleView(sender: AnyObject) {
         
         UIView.animateWithDuration(0.2, delay: 0.0, options: UIViewAnimationOptions.CurveEaseInOut, animations: { () -> Void in
             
             self.rescheduleView.alpha = 0
-
+            
             
             }, completion: { (Bool) -> Void in
                 
@@ -619,13 +668,13 @@ func scrollViewDidScroll(sender: UIScrollView) {
                 UIView.animateWithDuration(0.2, delay: 0, options: UIViewAnimationOptions.CurveEaseInOut, animations: { () -> Void in
                     self.actionView.frame = CGRectMake(0, 65, self.view.frame.width, 0)
                     self.feedView.center.y -= 88
-
+                    
                     }, completion: nil)
                 //                self.actionView.removeFromSuperview()
                 
         })
-
-
+        
+        
         
     }
     
@@ -641,11 +690,11 @@ func scrollViewDidScroll(sender: UIScrollView) {
                 UIView.animateWithDuration(0.2, delay: 0, options: UIViewAnimationOptions.CurveEaseInOut, animations: { () -> Void in
                     self.actionView.frame = CGRectMake(0, 65, self.view.frame.width, 0)
                     self.feedView.center.y -= 88
-                }, completion: nil)
+                    }, completion: nil)
                 
         })
         
-
+        
         
     }
     
@@ -653,7 +702,7 @@ func scrollViewDidScroll(sender: UIScrollView) {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
-
+    
+    
 }
 

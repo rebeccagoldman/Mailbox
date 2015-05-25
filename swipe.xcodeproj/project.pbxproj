@@ -11,7 +11,6 @@
 		6B0214AE1B1172C400A9E752 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B0214AD1B1172C400A9E752 /* ViewController.swift */; };
 		6B0214B11B1172C400A9E752 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6B0214AF1B1172C400A9E752 /* Main.storyboard */; };
 		6B0214B31B1172C400A9E752 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6B0214B21B1172C400A9E752 /* Images.xcassets */; };
-		6B0214B61B1172C400A9E752 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6B0214B41B1172C400A9E752 /* LaunchScreen.xib */; };
 		6B0214C21B1172C400A9E752 /* swipeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B0214C11B1172C400A9E752 /* swipeTests.swift */; };
 /* End PBXBuildFile section */
 
@@ -32,7 +31,6 @@
 		6B0214AD1B1172C400A9E752 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		6B0214B01B1172C400A9E752 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		6B0214B21B1172C400A9E752 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		6B0214B51B1172C400A9E752 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		6B0214BB1B1172C400A9E752 /* swipeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = swipeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		6B0214C01B1172C400A9E752 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6B0214C11B1172C400A9E752 /* swipeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = swipeTests.swift; sourceTree = "<group>"; };
@@ -81,7 +79,6 @@
 				6B0214AD1B1172C400A9E752 /* ViewController.swift */,
 				6B0214AF1B1172C400A9E752 /* Main.storyboard */,
 				6B0214B21B1172C400A9E752 /* Images.xcassets */,
-				6B0214B41B1172C400A9E752 /* LaunchScreen.xib */,
 				6B0214A91B1172C400A9E752 /* Supporting Files */,
 			);
 			path = swipe;
@@ -193,7 +190,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				6B0214B11B1172C400A9E752 /* Main.storyboard in Resources */,
-				6B0214B61B1172C400A9E752 /* LaunchScreen.xib in Resources */,
 				6B0214B31B1172C400A9E752 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -242,14 +238,6 @@
 				6B0214B01B1172C400A9E752 /* Base */,
 			);
 			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		6B0214B41B1172C400A9E752 /* LaunchScreen.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				6B0214B51B1172C400A9E752 /* Base */,
-			);
-			name = LaunchScreen.xib;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -409,6 +397,7 @@
 				6B0214C71B1172C400A9E752 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		6B0214C81B1172C400A9E752 /* Build configuration list for PBXNativeTarget "swipeTests" */ = {
 			isa = XCConfigurationList;
@@ -417,6 +406,7 @@
 				6B0214CA1B1172C400A9E752 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

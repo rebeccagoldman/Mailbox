@@ -22,7 +22,7 @@
                                 <subviews>
                                     <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" id="la9-E2-30I">
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" id="Kcn-6y-p3b" userLabel="actionView">
                                                 <rect key="frame" x="0.0" y="0.0" width="320" height="86"/>
@@ -55,6 +55,10 @@
                                                 </subviews>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             </view>
+                                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="feed" id="FV5-OL-0Gh">
+                                                <rect key="frame" x="0.0" y="151" width="320" height="1202"/>
+                                                <autoresizingMask key="autoresizingMask"/>
+                                            </imageView>
                                             <view contentMode="scaleToFill" id="zrF-Ln-Ct1" userLabel="Search view">
                                                 <rect key="frame" x="0.0" y="0.0" width="360" height="118"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -70,10 +74,6 @@
                                                 </subviews>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             </view>
-                                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="feed" id="FV5-OL-0Gh">
-                                                <rect key="frame" x="0.0" y="151" width="320" height="1202"/>
-                                                <autoresizingMask key="autoresizingMask"/>
-                                            </imageView>
                                             <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="laterView" id="Vpf-xW-PgP">
                                                 <rect key="frame" x="0.0" y="63" width="320" height="515"/>
                                                 <autoresizingMask key="autoresizingMask"/>
@@ -140,16 +140,6 @@
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             </view>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="vRR-Vr-XX0">
-                                                <rect key="frame" x="4" y="0.0" width="55" height="39"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <state key="normal">
-                                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                                </state>
-                                                <connections>
-                                                    <action selector="didTapCancel:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="Pmz-7Z-NZK"/>
-                                                </connections>
-                                            </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="ORP-Lb-E3Q">
                                                 <rect key="frame" x="277" y="5" width="36" height="30"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -165,6 +155,16 @@
                                                 <rect key="frame" x="0.0" y="70" width="320" height="297"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                             </imageView>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="vRR-Vr-XX0">
+                                                <rect key="frame" x="4" y="0.0" width="55" height="39"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <state key="normal">
+                                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="didTapCancel:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="cKo-og-ZNb"/>
+                                                </connections>
+                                            </button>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     </view>
@@ -212,6 +212,7 @@
                         <outlet property="archiveIconView" destination="68L-f9-oTp" id="aMZ-4V-0Gp"/>
                         <outlet property="archiveNavView" destination="9do-fC-39r" id="Tr4-hn-ddd"/>
                         <outlet property="archiveView" destination="ubr-iA-rgp" id="LSU-uP-MVs"/>
+                        <outlet property="cancelButton" destination="vRR-Vr-XX0" id="g5c-p4-6xA"/>
                         <outlet property="composeButton" destination="5ZL-v5-nfd" id="gpv-GK-5dc"/>
                         <outlet property="composeView" destination="RTM-gh-mkd" id="hcc-Sw-sJF"/>
                         <outlet property="containerView" destination="vJS-Be-tnu" id="j51-oM-iVr"/>
